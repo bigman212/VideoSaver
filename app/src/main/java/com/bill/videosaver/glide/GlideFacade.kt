@@ -2,7 +2,6 @@ package com.bill.videosaver.glide
 
 import android.content.Context
 import android.graphics.drawable.PictureDrawable
-import com.bill.videosaver.glide.SvgSoftwareLayerSetter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 
