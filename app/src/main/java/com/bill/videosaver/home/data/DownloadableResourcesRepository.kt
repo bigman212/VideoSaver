@@ -2,11 +2,10 @@ package com.bill.videosaver.home.data
 
 import arrow.core.Either
 import arrow.core.computations.either
-import arrow.core.flatMap
-import arrow.core.left
 import arrow.core.right
 import com.bill.videosaver.data.network.api.downloadable_urls.DownloadableResource
 import com.bill.videosaver.data.network.api.downloadable_urls.DownloadableResourcesApi
+import com.bill.videosaver.data.network.api.downloadable_urls.DownloadableUrlsRequest
 import com.bill.videosaver.data.network.model.BackendRequestError
 import com.bill.videosaver.home.domain.DownloadableResourcesRepository
 import kotlinx.serialization.json.Json
@@ -25,18 +24,9 @@ class DownloadableResourcesRepositoryImpl(
         resourcesUrls: List<String>,
     ): Either<GetDownloadableResourceError, List<DownloadableResource>> {
         return either {
-            if (false) {
-                GetDownloadableResourceError.NotSupportedUrls(emptyList()).left()
-            } else {
-                s(50).right()
-                    .flatMap {
-
-                    }
-            }
-
-            //        val request = DownloadableUrlsRequest.create(resourcesUrls).bind()
-            //        val response = api.fetchDownloadableUrls(request).mapLeft(::mapErrorsToDomain).bind()
-            //        response.toDomain()
+            val request = DownloadableUrlsRequest.create(resourcesUrls).bind()
+            val response = api.fetchDownloadableUrls(request).mapLeft(::mapErrorsToDomain).bind()
+            response.toDomain()
         }
     }
 

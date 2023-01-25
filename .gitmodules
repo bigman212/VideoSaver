@@ -1,0 +1,3 @@
+[submodule "VideoSaverSDK"]
+	path = VideoSaverSDK
+	url = https://bigman212@github.com/Le0nX/VideoSaverSDK.git
