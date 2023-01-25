@@ -11,6 +11,8 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:name="com.bill.videosaver.home.HomeFragment" />
+        android:name="com.bill.videosaver.home.HomeFragment"
+        tools:name="com.bill.videosaver.home.HomeFragment"
+        tools:layout="@layout/fragment_first" />
 
 </LinearLayout>

@@ -1,9 +1,17 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
 //    id 'com.google.gms.google-services'
+    id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
+    id 'org.jetbrains.kotlin.plugin.serialization' version "1.7.0"
+}
+
+def localPropertiesFile = rootProject.file("local.properties")
+def localProperties = new Properties()
+
+if (localPropertiesFile.exists()) {
+    localProperties.load(new FileInputStream(localPropertiesFile))
 }
 
 android {
@@ -16,6 +24,8 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+
+        buildConfigField "String", "BASE_URL", localProperties.getProperty("base_url")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -61,6 +71,7 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
 
     implementation "androidx.appcompat:appcompat:1.6.0"
 
@@ -102,7 +113,7 @@ dependencies {
 
     def retrofitVersion = '2.9.0'
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0'
 
     def okHttpVersion = '4.9.3'
     implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
@@ -112,6 +123,10 @@ dependencies {
 
     implementation "io.insert-koin:koin-android:$koinVersion"
     implementation "io.insert-koin:koin-androidx-workmanager:$koinVersion"
+
+    def arrowVersion = "1.0.1"
+    implementation "io.arrow-kt:arrow-core:$arrowVersion"
+    implementation "io.arrow-kt:arrow-fx-coroutines:$arrowVersion"
 
     def coroutinesVersion = '1.6.4'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"

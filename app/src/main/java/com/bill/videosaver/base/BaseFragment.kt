@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
 
-abstract class BaseFragment<VM : AppViewModel> : Fragment() {
+abstract class BaseFragment<VM : AppViewModel>(layoutRes: Int) : Fragment(layoutRes) {
 
     open val snackbarAttachView: View
         get() = requireActivity().findViewById(android.R.id.content)
